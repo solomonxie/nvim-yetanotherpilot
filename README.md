@@ -4,6 +4,8 @@ Interact with a Claude Code session — or another LLM provider — directly
 from Neovim. Hand the agent a repo-wide task, ask a quick question about
 the current line, or send it a selection with instructions.
 
+**Still in development — not yet ready to use.**
+
 ## Requirements
 
 - Neovim >= 0.8
