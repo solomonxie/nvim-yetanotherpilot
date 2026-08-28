@@ -44,19 +44,26 @@ function M.gather()
   }
 end
 
--- Builds a single user-role prompt string from gathered context.
-function M.build_prompt(ctx)
-  local parts = {
-    string.format('Explain the following %s code.', ctx.filetype ~= '' and ctx.filetype or 'code'),
-  }
+-- Builds a single user-role prompt string from gathered context, with a
+-- caller-supplied leading instruction (defaults to "explain this").
+function M.build_task_prompt(ctx, task)
+  local instruction = (task and task ~= '')
+      and task
+      or string.format('Explain the following %s code.', ctx.filetype ~= '' and ctx.filetype or 'code')
+  local parts = { instruction }
   if ctx.before ~= '' then
     table.insert(parts, '\nContext before:\n```\n' .. ctx.before .. '\n```')
   end
-  table.insert(parts, '\nCode to explain:\n```\n' .. ctx.target .. '\n```')
+  table.insert(parts, '\nCode:\n```\n' .. ctx.target .. '\n```')
   if ctx.after ~= '' then
     table.insert(parts, '\nContext after:\n```\n' .. ctx.after .. '\n```')
   end
   return table.concat(parts, '\n')
+end
+
+-- Builds a single user-role prompt string from gathered context.
+function M.build_prompt(ctx)
+  return M.build_task_prompt(ctx, nil)
 end
 
 return M
