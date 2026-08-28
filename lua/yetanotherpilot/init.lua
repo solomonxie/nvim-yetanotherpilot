@@ -3,6 +3,7 @@ local context = require('yetanotherpilot.context')
 local history = require('yetanotherpilot.history')
 local ui = require('yetanotherpilot.ui')
 local providers = require('yetanotherpilot.providers')
+local session = require('yetanotherpilot.session')
 
 local M = {}
 
@@ -10,6 +11,10 @@ function M.setup(opts)
   config.setup(opts)
 
   vim.keymap.set({ 'n', 'v' }, config.options.keymap, M.explain, { desc = 'YetAnotherPilot: explain' })
+  vim.keymap.set({ 'n', 'v' }, config.options.session.keymap_toggle, M.toggle_session,
+    { desc = 'YetAnotherPilot: toggle session' })
+  vim.keymap.set({ 'n', 'v' }, config.options.session.keymap_ask, ':YetAnotherPilotAsk ',
+    { desc = 'YetAnotherPilot: ask session about line/selection' })
 end
 
 -- Explains the current line or visual selection. A follow-up call (when the
@@ -51,6 +56,24 @@ end
 
 function M.toggle()
   ui.toggle()
+end
+
+function M.toggle_session()
+  session.toggle()
+end
+
+-- Sends the current line/selection to the interactive Claude Code session
+-- as-is, no task prefix.
+function M.send_to_session()
+  local ctx = context.gather()
+  session.send(ctx.target)
+end
+
+-- Sends the current line/selection to the interactive Claude Code session
+-- together with a task description, e.g. "refactor this to use async/await".
+function M.ask_session(task)
+  local ctx = context.gather()
+  session.send(context.build_task_prompt(ctx, task))
 end
 
 return M
