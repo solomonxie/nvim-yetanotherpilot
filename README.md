@@ -1,4 +1,4 @@
-# nvim-yetanotherpilot
+# Yet Another Pilot
 
 Explain-line Neovim plugin. Calls provider HTTP APIs directly — no local
 `claude` CLI subprocess, no cross-instance state. Supports OpenAI (default),
