@@ -13,6 +13,13 @@ M.defaults = {
     base_url = 'http://localhost:11434',
   },
   context_lines = 5,
+  session = {
+    cmd = 'claude',
+    args = {},
+    split_size = 20,
+    keymap_toggle = '<leader>cs',
+    keymap_ask = '<leader>ct',
+  },
 }
 
 M.options = vim.deepcopy(M.defaults)
