@@ -7,10 +7,6 @@ M.defaults = {
   models = {
     openai = 'gpt-4o-mini',
     anthropic = 'claude-3-5-sonnet-latest',
-    ollama = 'llama3.1',
-  },
-  ollama = {
-    base_url = 'http://localhost:11434',
   },
   context_lines = 5,
   session = {

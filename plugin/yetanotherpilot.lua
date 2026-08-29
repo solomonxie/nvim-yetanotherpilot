@@ -13,7 +13,7 @@ end, { desc = 'Clear YetAnotherPilot conversation history' })
 
 vim.api.nvim_create_user_command('YetAnotherPilotProvider', function(opts)
   require('yetanotherpilot').set_provider(opts.args)
-end, { nargs = 1, desc = 'Switch YetAnotherPilot provider (openai|anthropic|ollama)' })
+end, { nargs = 1, desc = 'Switch YetAnotherPilot provider (openai|anthropic)' })
 
 vim.api.nvim_create_user_command('YetAnotherPilotToggle', function()
   require('yetanotherpilot').toggle()
