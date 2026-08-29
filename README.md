@@ -1,10 +1,11 @@
 # Yet Another Pilot
 
+> ⚠️ **WORK IN PROGRESS — NOT FUNCTIONAL YET.** ⚠️
+> This plugin is still in active development and is not ready to install or use.
+
 Interact with a Claude Code session — or another LLM provider — directly
 from Neovim. Hand the agent a repo-wide task, ask a quick question about
 the current line, or send it a selection with instructions.
-
-**Still in development — not yet ready to use.**
 
 ## Requirements
 
@@ -21,7 +22,7 @@ Plug 'solomonxie/nvim-yetanotherpilot'
 
 ```lua
 require('yetanotherpilot').setup({
-  provider = 'openai',        -- quick-ask provider: 'openai' | 'anthropic' | 'ollama'
+  provider = 'openai',        -- quick-ask provider: 'openai' | 'anthropic'
   keymap = '<leader>ce',
 })
 ```
@@ -43,12 +44,12 @@ visual) prefills `:YetAnotherPilotAsk ` on the command line.
 
 ## Quick-ask mode
 
-Stateless, single-turn calls to OpenAI, Anthropic, or Ollama — for a fast
-answer without spinning up a full session.
+Stateless, single-turn calls to OpenAI or Anthropic — for a fast answer
+without spinning up a full session.
 
 - `:YetAnotherPilotExplain` — explain current line, or visual selection if active.
 - `:YetAnotherPilotClear` — clear conversation history.
-- `:YetAnotherPilotProvider <name>` — switch provider at runtime (`openai`, `anthropic`, `ollama`).
+- `:YetAnotherPilotProvider <name>` — switch provider at runtime (`openai`, `anthropic`).
 - `:YetAnotherPilotToggle` — toggle the quick-ask split.
 
 Default keymap `<leader>ce` (normal and visual mode) runs `:YetAnotherPilotExplain`.
@@ -63,7 +64,6 @@ quick-ask mode needs these.
 |-----------|----------------------|
 | openai    | `OPENAI_API_KEY`    |
 | anthropic | `ANTHROPIC_API_KEY` |
-| ollama    | none (local server)  |
 
 ## Config defaults
 
@@ -75,10 +75,6 @@ quick-ask mode needs these.
   models = {
     openai = 'gpt-4o-mini',
     anthropic = 'claude-3-5-sonnet-latest',
-    ollama = 'llama3.1',
-  },
-  ollama = {
-    base_url = 'http://localhost:11434',
   },
   context_lines = 5,
   session = {
@@ -91,7 +87,3 @@ quick-ask mode needs these.
 }
 ```
 
-## Ollama
-
-Requires a running local server (`ollama serve`) with a pulled model
-(`ollama pull llama3.1`). `ollama.base_url` can point at a remote host.

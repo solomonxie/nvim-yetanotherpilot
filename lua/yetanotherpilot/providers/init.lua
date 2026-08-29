@@ -5,7 +5,6 @@ local M = {}
 local adapters = {
   openai = 'yetanotherpilot.providers.openai',
   anthropic = 'yetanotherpilot.providers.anthropic',
-  ollama = 'yetanotherpilot.providers.ollama',
 }
 
 -- complete(messages, on_done) — dispatches to the configured provider.
