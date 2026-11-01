@@ -7,6 +7,11 @@ Interact with a Claude Code session — or another LLM provider — directly
 from Neovim. Hand the agent a repo-wide task, ask a quick question about
 the current line, or send it a selection with instructions.
 
+## Design
+
+Both splits, the command surface and every message are drawn in
+[`docs/uiux/splits.md`](docs/uiux/splits.md).
+
 ## Requirements
 
 - Neovim >= 0.8
